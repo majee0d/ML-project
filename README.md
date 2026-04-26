@@ -166,41 +166,63 @@ Business-oriented metrics were also used:
 - contact rate
 
 ## Final Results
-> Update this section with your **latest outputs after the final rerun**.
 
 ### Baseline — Logistic Regression
-- **Holdout Accuracy:** `[PUT YOUR FINAL VALUE HERE]`
-- **Holdout AUC:** `[PUT YOUR FINAL VALUE HERE]`
+#### Cross-Validation
+- **Accuracy:** `0.6452`
+- **AUC:** `0.5861`
+- **Kappa:** `0.0779`
+- **MCC:** `0.0929`
+
+#### Holdout
+- **Accuracy:** `0.5733`
+- **AUC:** `0.5670`
 
 ### Final Model — Tuned Random Forest
-- **Holdout Accuracy:** `[PUT YOUR FINAL VALUE HERE]`
-- **Holdout AUC:** `[PUT YOUR FINAL VALUE HERE]`
-- **Precision (yes):** `[PUT YOUR FINAL VALUE HERE]`
-- **Recall (yes):** `[PUT YOUR FINAL VALUE HERE]`
-- **F1-score (yes):** `[PUT YOUR FINAL VALUE HERE]`
+#### Cross-Validation
+- **Accuracy:** `0.7220`
+- **AUC:** `0.6419`
+- **Kappa:** `0.1359`
+- **MCC:** `0.1531`
+
+#### Holdout
+- **Accuracy:** `0.7147`
+- **AUC:** `0.6448`
+- **Precision (`yes`):** `0.1934`
+- **Recall (`yes`):** `0.4537`
+- **F1-score (`yes`):** `0.2712`
 
 ## Business Impact
-> Update this section with your **final business metrics after rerunning the final notebook**.
-
-- **Baseline subscription rate:** `[PUT YOUR FINAL VALUE HERE]`
-- **Conversion rate among customers predicted as yes:** `[PUT YOUR FINAL VALUE HERE]`
-- **Lift:** `[PUT YOUR FINAL VALUE HERE]`
-- **Capture rate of actual subscribers:** `[PUT YOUR FINAL VALUE HERE]`
-- **Share of customers flagged for contact:** `[PUT YOUR FINAL VALUE HERE]`
+- **Baseline subscription rate:** `11.70%`
+- **Conversion rate among customers predicted as yes:** `19.34%`
+- **Lift:** `1.65x`
+- **Capture rate of actual subscribers:** `45.37%`
+- **Share of customers flagged for contact:** `27.45%`
 
 ### Business Interpretation
 The model is intended to help the bank focus on a smaller, higher-probability customer segment instead of contacting everyone equally.
 
+Instead of calling all customers, the bank can target about **27.45%** of customers identified by the model and expect a subscription rate of **19.34%**, compared with the natural baseline of **11.70%**.
+
 This makes the model useful as a **lead prioritization tool**.
 
-## Most Important Features
-> Replace these with the top features from your final feature-importance plot after rerunning.
+## Confusion Matrix Summary
+For the final model on the holdout set:
+- **True Negatives:** `5983`
+- **False Positives:** `2002`
+- **False Negatives:** `578`
+- **True Positives:** `480`
 
+This confirms that the model is stronger at identifying non-subscribers than subscribers, which is common in imbalanced classification problems. However, it still provides meaningful lift and useful ranking value.
+
+## Most Important Features
 The final model highlighted several important features, such as:
 - `pdays`
 - `age`
 - `day`
 - `balance`
+
+These suggest that customer history, timing, age, and financial status all play meaningful roles in predicting term deposit subscription.
 
 ## How the Model Can Be Used
 The model can be used in two practical ways:
